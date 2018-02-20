@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+form {
+  width: 40%;
+  height: 40%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid black;
+}
+
+form textarea {
+  width: 100%;
+  height: 80%;
+}
+
+form input {
+  padding: 4px;
+  width: 40%;
+}
+/*# sourceMappingURL=main.css.map */
