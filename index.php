@@ -35,39 +35,44 @@ if(isset($_POST)){
 </head>
 <body>
     <main>
-        <form class="create-todo" action="" method="post">
-            <h1>Ajouter une nouvelle tâche</h1>
-            <input type="text" name="new_entry" id="new-entry">
-            <input type="submit" value="Enregistrer">
-        </form>
-
-
-        <div class="list">
-            <h2>À faire</h2>
+        <div class="list create-todo">
+            <h2>Ajouter une nouvelle tâche</h2>
             <form action="" method="post">
-                <?php
-                $data = load_json();
-                
-                for($i = 0; $i < count($data); $i++){
-                    $current_item = $data[$i];
-                    
-                    if($current_item->archived == false){
-                        echo '<input type="checkbox" name="todo_to_archive[]" value ="';
-                        echo $i;
-                        echo '" />';
-
-                        echo ' <label for="'. $i .'">';
-                        echo $current_item->content;
-                        echo '</label><br/>';
-                    }
-                }
-                ?>
-                <input type="submit" value="Archiver">
+                <input type="text" name="new_entry" id="new-entry">
+                <input type="submit" value="Enregistrer">
             </form>
         </div>
-        <div class="list">
-            <h2>Archivés</h2>
-            <ul>
+
+
+        <div class="list todo">
+            <h2>À faire</h2>
+            <form action="" method="post">
+                <input type="submit" value="Archiver">
+                <div class="collect">   
+                    <?php
+                    $data = load_json();
+                    
+                    for($i = 0; $i < count($data); $i++){
+                        $current_item = $data[$i];
+                        
+                        if($current_item->archived == false){
+                            echo '<div class="item">';
+                            echo '<input type="checkbox" name="todo_to_archive[]" value ="';
+                            echo $i;
+                            echo '" />';
+                            
+                            echo ' <label for="'. $i .'">';
+                            echo $current_item->content;
+                            echo '</label></div>';
+                        }
+                    }
+                    ?>
+                </div>
+            </form>
+        </div>
+        <div class="list archive">
+            <h2>Archives</h2>
+            <form>
                 <?php
                 $data = load_json();
                 
@@ -75,18 +80,20 @@ if(isset($_POST)){
                     $current_item = $data[$i];
                     
                     if($current_item->archived == true){
-                        echo '<li>';
+                        echo '<div class="item">';
+                        echo '<input type="checkbox" disabled checked>';
+                        echo '<label>';
                         echo $current_item->content;
-                        echo '</li>';
+                        echo '</label></div>';
                     }
                 }
                 ?>
-            </ul>
+            </form>
         </div>
     </main>
 
     <?php
-    var_dump($_POST);
+    // var_dump($_POST);
     ?>
 </body>
 </html>

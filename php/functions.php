@@ -35,7 +35,7 @@ function load_json($url="assets/json/datalist.json"){
 function archive_json($index_to_archive, $url="assets/json/datalist.json"){
     $array_data = load_json( $url );
 
-    echo 'VAR DUMP : '; var_dump($index_to_archive);
+    // echo 'VAR DUMP : '; var_dump($index_to_archive);
     if(isset($index_to_archive) && count($index_to_archive) > 0){
 
         for($i = 0; $i < count($array_data); $i++){

@@ -7,8 +7,26 @@
 body{
     width: 100vw;
     height: 100vh;
+
+    background-color: $color-background;
 }
 
 main{
+    width: 60vw;
+    height: 80vh;
+    margin: auto;
+
     display: flex;
+    justify-content: space-around;
+    // align-content: center;
+    align-items: center;
+}
+
+h2{
+    // width: 100%;
+    margin-bottom: 12px;
+    padding-bottom: 4px;
+
+    font-size: 1.4em;
+    border-bottom: 1px solid black;
 }
