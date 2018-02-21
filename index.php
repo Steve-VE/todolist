@@ -29,6 +29,9 @@ if(isset($_POST)){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <script src="js/jquery-3.3.1.min.js"></script>
+    
+
     <link rel="stylesheet" href="stylesheets/main.css">
 
     <title>Todo List</title>
@@ -96,4 +99,5 @@ if(isset($_POST)){
     // var_dump($_POST);
     ?>
 </body>
+<script src="js/todo-script.js"></script>
 </html>
