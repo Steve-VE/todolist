@@ -3,10 +3,8 @@ require "php/functions.php";
 
 $to_archive = null;
 
-
+// Si $_POST existe (ce qui sous-entend que des valeurs ont été passées via la méthode 'post')
 if(isset($_POST)){
-    // var_dump($_POST);
-
     if(isset($_POST['todo_to_archive'])){
         if(is_array($_POST['todo_to_archive'])){    
             $to_archive = $_POST['todo_to_archive'];
@@ -31,7 +29,6 @@ if(isset($_POST)){
 
     <script src="js/jquery-3.3.1.min.js"></script>
     
-
     <link rel="stylesheet" href="stylesheets/main.css">
 
     <title>Todo List</title>
@@ -48,50 +45,11 @@ if(isset($_POST)){
 
 
         <div class="list todo">
-            <h2>À faire</h2>
-            <form action="" method="post">
-                <input type="submit" value="Archiver">
-                <div class="collect">   
-                    <?php
-                    $data = load_json();
-                    
-                    for($i = 0; $i < count($data); $i++){
-                        $current_item = $data[$i];
-                        
-                        if($current_item->archived == false){
-                            echo '<div class="item">';
-                            echo '<input type="checkbox" name="todo_to_archive[]" value ="';
-                            echo $i;
-                            echo '" />';
-                            
-                            echo ' <label for="'. $i .'">';
-                            echo $current_item->content;
-                            echo '</label></div>';
-                        }
-                    }
-                    ?>
-                </div>
-            </form>
+            <!-- Va contenir la TODO liste (charger via Javascript) -->
         </div>
-        <div class="list archive">
-            <h2>Archives</h2>
-            <form>
-                <?php
-                $data = load_json();
-                
-                for($i = 0; $i < count($data); $i++){
-                    $current_item = $data[$i];
-                    
-                    if($current_item->archived == true){
-                        echo '<div class="item">';
-                        echo '<input type="checkbox" disabled checked>';
-                        echo '<label>';
-                        echo $current_item->content;
-                        echo '</label></div>';
-                    }
-                }
-                ?>
-            </form>
+
+        <div class="list archives">
+            <!-- Va contenir les arhives de la TODO liste (cahrger via Javascript) -->
         </div>
     </main>
 

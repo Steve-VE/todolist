@@ -57,6 +57,11 @@ h2 {
 .list input[type=checkbox] {
   width: 1.5em;
   height: 1.5em;
+  margin-right: 8px;
+}
+
+.list input[type=checkbox]:checked {
+  opacity: 0.5;
 }
 
 .list .item {
@@ -67,12 +72,20 @@ h2 {
   border-radius: 4px;
 }
 
+.list .item:hover, .list .item :hover:not(input) {
+  cursor: move;
+}
+
 .todo .item:nth-child(even) {
   background-color: #d0e5f7;
 }
 
 .todo .item:nth-child(odd) {
   background-color: #f1f8de;
+}
+
+.todo .item:hover, .todo .item :hover:not(input) {
+  cursor: move;
 }
 
 .collect {
@@ -87,7 +100,7 @@ h2 {
   width: 100%;
 }
 
-.archive .item {
+.archives .item {
   color: #706f79;
   background-color: #a5a296;
 }
