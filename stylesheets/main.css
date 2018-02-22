@@ -84,8 +84,9 @@ h2 {
   background-color: #f1f8de;
 }
 
-.todo .item:hover, .todo .item :hover:not(input) {
-  cursor: move;
+.archives .item {
+  color: #706f79;
+  background-color: #a5a296;
 }
 
 .collect {
@@ -98,10 +99,5 @@ h2 {
   margin: 8px 0;
   padding: 4px;
   width: 100%;
-}
-
-.archives .item {
-  color: #706f79;
-  background-color: #a5a296;
 }
 /*# sourceMappingURL=main.css.map */

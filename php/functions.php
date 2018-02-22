@@ -62,16 +62,11 @@ function get_value($value_name){
 }
 
 
-
 // function save_json( $json_file ){
 //     $url="assets/json/datalist.json";
 //     // file_put_contents($url, json_encode( $json_file, JSON_PRETTY_PRINT ));
 //     file_put_contents($url, $json_file);
 //     return "JSON file saved !";
 // }
-
-function save_json(){
-    return "JSON file saved !";
-}
 
 ?>

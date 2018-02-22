@@ -1,7 +1,7 @@
 [
     {
         "content": "Nourrir le chat",
-        "archived": false
+        "archived": true
     },
     {
         "content": "Manger le chien",
@@ -9,46 +9,6 @@
     },
     {
         "content": "Noyer le poisson",
-        "archived": false
-    },
-    {
-        "content": "Enterrer la taupe",
-        "archived": true
-    },
-    {
-        "content": "Bercer la marmotte",
-        "archived": true
-    },
-    {
-        "content": "Jeter le b\u00e9b\u00e9 avec l&#39;eau du bain",
-        "archived": false
-    },
-    {
-        "content": "Gratter le cr\u00e2ne d&#39;une girafe",
-        "archived": true
-    },
-    {
-        "content": "Dormir dans la gueule d&#39;un lion",
-        "archived": true
-    },
-    {
-        "content": "Faire un bras de fer avec un hippotame",
-        "archived": false
-    },
-    {
-        "content": "Casser les pattes d&#39;un canard",
-        "archived": false
-    },
-    {
-        "content": "sgsgs",
-        "archived": false
-    },
-    {
-        "content": "sgsgs",
-        "archived": false
-    },
-    {
-        "content": "sgsgs",
         "archived": false
     }
 ]

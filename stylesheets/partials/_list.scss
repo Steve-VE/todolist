@@ -49,6 +49,7 @@
         }
     }
 }
+
 .todo{
     .item{
 
@@ -58,10 +59,13 @@
         &:nth-child(odd){
             background-color: $todo-2;
         }
+    }
+}
 
-        &:hover, :hover:not(input){
-            cursor: move;
-        }
+.archives{
+    .item{
+        color: $color-button;
+        background-color: $todo-archived;
     }
 }
 
@@ -77,12 +81,5 @@
         margin: 8px 0;
         padding: 4px;
         width: 100%;
-    }
-}
-
-.archives{
-    .item{
-        color: $color-button;
-        background-color: $todo-archived;
     }
 }
