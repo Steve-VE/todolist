@@ -28,7 +28,7 @@ $(function(){
                             console.log(msg);
                         },
                         error: function(){
-                            console.log("-- ! Warning : Failed to save JSON file...");
+                            console.log("-- ! Warning: Failed to save JSON file...");
                         }
                     });
                 }
