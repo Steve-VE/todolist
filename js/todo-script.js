@@ -1,26 +1,28 @@
 $(function(){
 
     let $todoItems;
-    let dataJSON;
-
+    
     // Chargement de la TODO liste...
     $(".todo").load('php/parts/todo_list.php', function(){
         lookingForUpdate();
     });
-
+    
+    // Récupération du JSON
+    let dataJSON;
     $.getJSON('assets/json/datalist.json', function(data){
-        console.log("-- ! JSON loaded");
-        
         dataJSON = data;
-        console.log(dataJSON);
     });
 
 
+    // Gère l'archivage et le "désarchivage" d'une élément de la TODO liste
     function lookingForUpdate(){
+        // (... appelé lors du chargement de la 'div.todo'...)
+
         // Ensuite, chargement des archives...
         $(".archives").load('php/parts/archives.php', function(){
             // Ensuite, récupération des items (éléments qui composent la TODO liste et les archives)
             $todoItems = $('.item');
+            $todoItems.attr("draggable", true);
 
             $todoItems.click(function(){
                 let $checkbox = $(this).find("input");
