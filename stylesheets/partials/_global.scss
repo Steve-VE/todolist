@@ -9,7 +9,7 @@ body{
     height: 100vh;
 
     // background-color: $color-background;
-    background: url("/assets/img/table.png");
+    background: url("/assets/img/table.png") fixed no-repeat;
     background-size: cover;
 }
 

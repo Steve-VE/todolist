@@ -28,17 +28,21 @@ function get_value($value_name){
 if(isset($_POST['json_name']) && isset($_POST['json_state'])){
 
     $json_name = get_value('json_name');
-    $json_state = get_value('json_state');
+    $json_state = (get_value('json_state') == 'true')? true : false;
 
     $json_file = load_json();
 
     for($i = 0; $i < count($json_file); $i++){
-        if(  $json_file[$i]->content == $json_name ){
-            $json_file[$i]->archived = ($json_state == "true");
+
+        if(  $json_file[$i]->content == $json_name 
+        && $json_file[$i]->archived == $json_state){
+
+            $json_file[$i]->archived = !$json_state;
+        
+            $i = count($json_file); // Pour casser la boucle
         }
     }
 
-    // var_dump( $json_file );
     file_put_contents( "../assets/json/datalist.json", json_encode( $json_file, JSON_PRETTY_PRINT ));
     // file_put_contents( "datalist.json", json_encode( $json_file, JSON_PRETTY_PRINT ));
 }

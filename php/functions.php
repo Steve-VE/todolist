@@ -62,6 +62,23 @@ function get_value($value_name){
 }
 
 
+
+function delete_archives($values, $url="assets/json/datalist.json"){
+    $json = load_json();
+
+    if(!empty($json)){
+        $new_json = [];
+
+        for($i = 0; $i < count($json);$i++){
+            if( !$json[$i]->archived ){
+                $new_json[] = $json[$i];
+            }
+        }
+        // Sauvegarde du fichier
+        file_put_contents($url, json_encode( $new_json, JSON_PRETTY_PRINT ));
+    }
+}
+
 // function save_json( $json_file ){
 //     $url="assets/json/datalist.json";
 //     // file_put_contents($url, json_encode( $json_file, JSON_PRETTY_PRINT ));

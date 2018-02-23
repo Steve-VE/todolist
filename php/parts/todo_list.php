@@ -9,18 +9,20 @@ require "../functions.php";
         <?php
         $data = load_json("../../assets/json/datalist.json");
         
-        for($i = 0; $i < count($data); $i++){
-            $current_item = $data[$i];
-            
-            if($current_item->archived == false){
-                echo '<div class="item">';
-                echo '<input type="checkbox" name="todo_to_archive[]" value ="';
-                echo $i;
-                echo '" />';
+        if( !empty($data) ){
+            for($i = 0; $i < count($data); $i++){
+                $current_item = $data[$i];
                 
-                echo ' <label for="'. $i .'">';
-                echo $current_item->content;
-                echo '</label></div>';
+                if($current_item->archived == false){
+                    echo '<div class="item">';
+                    echo '<input type="checkbox" name="todo_to_archive[]" value ="';
+                    echo $i;
+                    echo '" />';
+                    
+                    echo ' <label for="'. $i .'">';
+                    echo $current_item->content;
+                    echo '</label></div>';
+                }
             }
         }
         ?>

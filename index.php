@@ -16,6 +16,10 @@ if(isset($_POST)){
         // $new_entry = get_value( "new_entry_text" );
         add_to_json( get_value( "new_entry" ) );
     }
+
+    if(isset($_POST['todo_to_delete'])){
+        delete_archives( $_POST['todo_to_delete'] );
+    }
 }
 
 ?>

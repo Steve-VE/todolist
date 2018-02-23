@@ -7,7 +7,7 @@
 body {
   width: 100vw;
   height: 100vh;
-  background: url("/assets/img/table.png");
+  background: url("/assets/img/table.png") fixed no-repeat;
   background-size: cover;
 }
 
