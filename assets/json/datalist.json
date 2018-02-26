@@ -5,7 +5,7 @@
     },
     {
         "content": "Manger le chien",
-        "archived": false
+        "archived": true
     },
     {
         "content": "Noyer le poisson",
@@ -13,22 +13,14 @@
     },
     {
         "content": "Frapper le poney",
-        "archived": false
+        "archived": true
     },
     {
         "content": "Dormir comme une souche",
-        "archived": false
+        "archived": true
     },
     {
-        "content": "Bilou",
-        "archived": false
-    },
-    {
-        "content": "Nourrir le chat",
-        "archived": false
-    },
-    {
-        "content": "Nourrir le chat",
+        "content": "Chocolat",
         "archived": false
     }
 ]

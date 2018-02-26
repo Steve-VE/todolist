@@ -1,6 +1,7 @@
-$(function(){
 
+$(function(){
     let $todoItems;
+    
     
     // Chargement de la TODO liste...
     $(".todo").load('php/parts/todo_list.php', function(){
@@ -20,7 +21,7 @@ $(function(){
         $(".archives").load('php/parts/archives.php', function(){
             // Ensuite, récupération des items (éléments qui composent la TODO liste et les archives)
             $todoItems = $('.item');
-            $todoItems.attr("draggable", true);
+            // $todoItems.attr("draggable", true);
 
             $todoItems.find("input").click(function(){
                 // let $checkbox = $(this).find("input");
@@ -54,5 +55,36 @@ $(function(){
             });
         });
     }
-
 });
+
+
+function drag(ev) {
+    console.log("Drag Start on : " + ev.target.id);
+    ev.dataTransfer.setData('text/plain', ev.target.id);
+}
+
+function drop(ev){
+    ev.preventDefault();
+    console.log(ev.target.id + " : Something drop here !");
+}
+
+// $todoItems.addEventListener('dragstart', function(e) {
+//     console.log("Drag Start...");
+//     e.dataTransfer.setData('text/plain', "Ce texte sera transmis à l'élément HTML de réception");
+// });
+
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+// function drag(ev) {
+//     console.log("drag on...");
+//     ev.dataTransfer.setData("text/plain", ev.target.id);
+// }
+
+// function drop(ev) {
+//     ev.preventDefault();
+//     var data = ev.dataTransfer.getData("text/plain");
+//     ev.target.appendChild(document.getElementById(data));
+// }
