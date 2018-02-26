@@ -5,7 +5,7 @@ require "../functions.php";
 <h2>Archives</h2>
 <form method="post">
     <input type="submit" value="Supprimer les archives">
-    <div id="collect-archive" class="collect" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div id="collect-archive" class="collect" ondragover="allowDrop(event)">
         <?php
         $data = load_json("../../assets/json/datalist.json");
         

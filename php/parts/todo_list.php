@@ -5,7 +5,7 @@ require "../functions.php";
 <h2>À faire</h2>
 <form action="" method="post">
     <!-- <input type="submit" value="Archiver"> -->
-    <div id="collect-todo" class="collect" ondrop="drop(event)" ondragover="allowDrop(event)">   
+    <div id="collect-todo" class="collect" ondragover="allowDrop(event)">   
         <?php
         $data = load_json("../../assets/json/datalist.json");
         
@@ -14,7 +14,7 @@ require "../functions.php";
                 $current_item = $data[$i];
                 
                 if($current_item->archived == false){
-                    echo '<div class="item" draggable="true" ondragstart="drag(event)"';
+                    echo '<div class="item" draggable="true" ondragstart="drag(event)" ';
                     echo ' id="id_'. $i .'" ';
                     echo '>';
                     echo '<input type="checkbox" name="todo_to_archive[]" value ="';

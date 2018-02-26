@@ -8,11 +8,21 @@ function add_to_json( $text, $url="assets/json/datalist.json"){
 
 
     if( $text != "" && $text != false && $text != null ){
+        $valid = true;
+        foreach($array_data as &$data){
+            if($data->content == $text){
+                $data->archived = false;
+                $valid = false;
+                break;
+            }
+        }
 
-        $array_data[] = [
-            "content" => $text,
-            "archived" => false
-        ];
+        if($valid){
+            $array_data[] = [
+                "content" => $text,
+                "archived" => false
+            ];
+        }
 
         // Sauvegarde du fichier
         file_put_contents($url, json_encode( $array_data, JSON_PRETTY_PRINT ));

@@ -9,18 +9,14 @@
     },
     {
         "content": "Noyer le poisson",
-        "archived": false
+        "archived": true
     },
     {
         "content": "Frapper le poney",
-        "archived": true
+        "archived": false
     },
     {
         "content": "Dormir comme une souche",
-        "archived": true
-    },
-    {
-        "content": "Chocolat",
         "archived": false
     }
 ]

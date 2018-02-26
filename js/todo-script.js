@@ -1,22 +1,57 @@
 
 $(function(){
     let $todoItems;
+    let todoList, todoListCounter = 0;
+    let todoArchives, todoArchivesCounter = 0;
+    let draggedElement = null;
     
     
     // Chargement de la TODO liste...
     $(".todo").load('php/parts/todo_list.php', function(){
         lookingForUpdate();
+
+        // Récupération des deux listes
+        todoList = document.querySelector('.todo');
+        todoArchives = document.querySelector('.archives');
+
+        // Ajouts des EventsListeners pour la TodoList...
+        todoList.addEventListener('dragenter', function(){
+            todoListCounter++;
+            // todoList.style.backgroundColor = "rgba(240, 255, 255, 0.8)";
+            todoList.style.boxShadow = "0 0 2px 2px rgba(20, 50, 100, 0.8)";
+        });
+        todoList.addEventListener('dragleave', function(){
+            todoListCounter--;
+            if(todoListCounter <= 0){
+                todoList.style.boxShadow = "0 0 2px 2px rgba(0, 0, 0, 0.3)";
+                // todoList.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
+            }
+        });
+        todoList.addEventListener('drop', function(ev){
+            ev.preventDefault();
+
+            todoListCounter = 0;
+            todoList.style.boxShadow = "0 0 2px 2px rgba(0, 0, 0, 0.3)";
+
+            console.log(ev.target.id + " : Something drop here !");
+            alert(ev.dataTransfer.getData('text/plain'));
+        });    
+    });
+
+    document.addEventListener('dragend', function(){
+        // alert("Drag over");
     });
     
     let dataJSON;
 
     // Gère l'archivage et le "désarchivage" d'une élément de la TODO liste
     function lookingForUpdate(){
+        // (... appelé lors du chargement de la 'div.todo'...)
+
         // Récupération du JSON
         $.getJSON('assets/json/datalist.json', function(data){
             dataJSON = data;
         });
-        // (... appelé lors du chargement de la 'div.todo'...)
         // Ensuite, chargement des archives...
         $(".archives").load('php/parts/archives.php', function(){
             // Ensuite, récupération des items (éléments qui composent la TODO liste et les archives)
@@ -60,13 +95,11 @@ $(function(){
 
 function drag(ev) {
     console.log("Drag Start on : " + ev.target.id);
+
+    draggedElement = ev.target;
     ev.dataTransfer.setData('text/plain', ev.target.id);
 }
 
-function drop(ev){
-    ev.preventDefault();
-    console.log(ev.target.id + " : Something drop here !");
-}
 
 // $todoItems.addEventListener('dragstart', function(e) {
 //     console.log("Drag Start...");
