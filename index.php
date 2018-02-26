@@ -1,6 +1,18 @@
 <?php
 require "php/functions.php";
 
+// Connexion à la base de donnée...
+try{
+    $data_base = new PDO('mysql:host=localhost;dbname=becode;charset=utf8', 'root', '');
+    var_dump($data_base);
+    // die();
+}
+catch(Exception $e){
+    // echo 'Erreur: Impossible de se connecter à la DataBase';
+    die('Erreur: Impossible de se connecter à la DataBase'. $e->getMessage());
+}
+
+
 $to_archive = null;
 
 // Si $_POST existe (ce qui sous-entend que des valeurs ont été passées via la méthode 'post')
