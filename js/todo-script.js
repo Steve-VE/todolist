@@ -65,16 +65,16 @@ $(function(){
                 if( $checkbox.prop("checked") != dataJSON[ $checkbox.attr("value") ] ){
                     // dataJSON[ $checkbox.attr("value") ]["archived"] = $checkbox.prop("checked");
 
-                    let cName = dataJSON[ $checkbox.attr("value") ]["content"];
-                    let cState = dataJSON[ $checkbox.attr("value") ]["archived"];
+                    let cID = $checkbox.attr("value");
+                    let cState = $checkbox.prop("checked");
                     // console.log($checkbox.attr("value") + ". " + cName + " : " + cState);
 
                     $.ajax({
                         url: 'php/update_json.php',
                         type: "POST",
                         data: {
-                            json_name: cName, 
-                            json_state: cState
+                            element_id: cID, 
+                            element_state: cState
                         },
                         success: function(msg){
                             // console.log(msg);

@@ -5,11 +5,7 @@
     },
     {
         "content": "Manger le chien",
-        "archived": true
-    },
-    {
-        "content": "Noyer le poisson",
-        "archived": true
+        "archived": false
     },
     {
         "content": "Frapper le poney",

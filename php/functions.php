@@ -44,8 +44,6 @@ function load_json($url="assets/json/datalist.json"){
 // Fonction à appeller pour "archiver" des valeurs dans le fichier JSON
 function archive_json($index_to_archive, $url="assets/json/datalist.json"){
     $array_data = load_json( $url );
-
-    // echo 'VAR DUMP : '; var_dump($index_to_archive);
     if(isset($index_to_archive) && count($index_to_archive) > 0){
 
         for($i = 0; $i < count($array_data); $i++){
@@ -74,26 +72,24 @@ function get_value($value_name){
 
 
 function delete_archives($values, $url="assets/json/datalist.json"){
-    $json = load_json();
+    $data_base = connect_to_db();
 
-    if(!empty($json)){
-        $new_json = [];
-
-        for($i = 0; $i < count($json);$i++){
-            if( !$json[$i]->archived ){
-                $new_json[] = $json[$i];
-            }
-        }
-        // Sauvegarde du fichier
-        file_put_contents($url, json_encode( $new_json, JSON_PRETTY_PRINT ));
+    foreach($_POST['todo_to_delete'] as $id){
+        $request = "DELETE FROM `todolist` WHERE `id`=". $id .";";
+        $data_base->exec($request);
     }
 }
 
-// function save_json( $json_file ){
-//     $url="assets/json/datalist.json";
-//     // file_put_contents($url, json_encode( $json_file, JSON_PRETTY_PRINT ));
-//     file_put_contents($url, $json_file);
-//     return "JSON file saved !";
-// }
+function connect_to_db($host="localhost", $dbname="becode", $username="root", $password="" ){
+    // Connexion à la base de donnée...
+    try{
+        $data_base = new PDO('mysql:host='. $host .';dbname='. $dbname .';charset=utf8', $username, $password);
+        return $data_base;
+    }
+    catch(Exception $e){
+        // echo 'Erreur: Impossible de se connecter à la DataBase';
+        die('Erreur: Impossible de se connecter à la DataBase'. $e->getMessage());
+    }
+}
 
 ?>

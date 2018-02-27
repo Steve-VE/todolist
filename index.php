@@ -2,16 +2,7 @@
 require "php/functions.php";
 
 // Connexion à la base de donnée...
-try{
-    $data_base = new PDO('mysql:host=localhost;dbname=becode;charset=utf8', 'root', '');
-    var_dump($data_base);
-    // die();
-}
-catch(Exception $e){
-    // echo 'Erreur: Impossible de se connecter à la DataBase';
-    die('Erreur: Impossible de se connecter à la DataBase'. $e->getMessage());
-}
-
+$data_base = connect_to_db();
 
 $to_archive = null;
 
@@ -25,15 +16,19 @@ if(isset($_POST)){
     }
 
     if(isset($_POST['new_entry']) && !empty(isset($_POST['new_entry']))){
-        // $new_entry = get_value( "new_entry_text" );
-        add_to_json( get_value( "new_entry" ) );
+        $new_entry = get_value("new_entry");
+
+
+        if(isset($data_base) && strlen($new_entry) > 0){
+            $sql_requets = "INSERT INTO todolist (id, content, state) VALUES (null, '". get_value("new_entry") ."', 0);";
+            $data_base->exec($sql_requets);
+        }
     }
 
     if(isset($_POST['todo_to_delete'])){
         delete_archives( $_POST['todo_to_delete'] );
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -75,3 +70,10 @@ if(isset($_POST)){
 </body>
 <script src="js/todo-script.js"></script>
 </html>
+
+<?php
+// Si une connexion à la BDD existait, on y met fin
+if(isset($data_base)){
+    $data_base = null;
+}
+?>

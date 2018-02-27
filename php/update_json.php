@@ -1,12 +1,14 @@
 <?php
-// Charge et retourne un fichier JSON
-function load_json($url="../assets/json/datalist.json"){
-    if(!$raw_file = file_get_contents($url)){
-        $error = error_get_last();
-        // echo "HTTP request failed. Error was: " . $error['message'];
+
+function connect_to_db($host="localhost", $dbname="becode", $username="root", $password="" ){
+    // Connexion à la base de donnée...
+    try{
+        $data_base = new PDO('mysql:host='. $host .';dbname='. $dbname .';charset=utf8', $username, $password);
+        return $data_base;
     }
-    else{
-        return json_decode($raw_file);
+    catch(Exception $e){
+        // echo 'Erreur: Impossible de se connecter à la DataBase';
+        die('Erreur: Impossible de se connecter à la DataBase'. $e->getMessage());
     }
 }
 
@@ -25,25 +27,14 @@ function get_value($value_name){
 /////////////////////////////////////////////////////////////////
 
 
-if(isset($_POST['json_name']) && isset($_POST['json_state'])){
+if(isset($_POST['element_id']) && isset($_POST['element_state'])){
 
-    $json_name = get_value('json_name');
-    $json_state = (get_value('json_state') == 'true')? true : false;
+    $element_id = get_value('element_id');
+    $element_state = (get_value('element_state') == 'true')? 1 : 0;
 
-    $json_file = load_json();
-
-    for($i = 0; $i < count($json_file); $i++){
-
-        if(  $json_file[$i]->content == $json_name 
-        && $json_file[$i]->archived == $json_state){
-
-            $json_file[$i]->archived = !$json_state;
-        
-            $i = count($json_file); // Pour casser la boucle
-        }
-    }
-
-    file_put_contents( "../assets/json/datalist.json", json_encode( $json_file, JSON_PRETTY_PRINT ));
-    // file_put_contents( "datalist.json", json_encode( $json_file, JSON_PRETTY_PRINT ));
+    $data_base = connect_to_db();
+    $sql_request = "UPDATE `todolist` SET `state`=". $element_state ." WHERE `id`='". $element_id ."';";
+    var_dump($sql_request);
+    $result = $data_base->exec($sql_request);
 }
 ?>
