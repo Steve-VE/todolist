@@ -49,6 +49,13 @@
         &:hover, :hover:not(input){
             cursor: move;
         }
+
+        &.urgence{
+            background-color: rgba(151, 60, 60, 0.8)!important;
+            color: white;
+            font-weight: bold;
+            border: 1px solid red;
+        }
     }
 }
 

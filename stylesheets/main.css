@@ -76,6 +76,13 @@ h2 {
   cursor: move;
 }
 
+.list .item.urgence {
+  background-color: rgba(151, 60, 60, 0.8) !important;
+  color: white;
+  font-weight: bold;
+  border: 1px solid red;
+}
+
 .todo .item:nth-child(even) {
   background-color: #d0e5f7;
 }

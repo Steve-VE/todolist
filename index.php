@@ -8,23 +8,36 @@ $to_archive = null;
 
 // Si $_POST existe (ce qui sous-entend que des valeurs ont été passées via la méthode 'post')
 if(isset($_POST)){
-    if(isset($_POST['todo_to_archive'])){
-        if(is_array($_POST['todo_to_archive'])){    
-            $to_archive = $_POST['todo_to_archive'];
-            archive_json($to_archive);
-        }
-    }
 
+    // Ajouter une nouvelle tâche...
     if(isset($_POST['new_entry']) && !empty(isset($_POST['new_entry']))){
         $new_entry = get_value("new_entry");
 
+        $expiration_date = 'null';
+
+        if(isset($_POST['input_date']) && $_POST['input_date'] != ""){
+            $date = date_parse($_POST['input_date']);
+            if(checkdate( $date['month'], $date['day'], $date['year'] )){
+                $expiration_date = "'". $date['year'] ."-". $date['month'] ."-". $date['day'] ."'";
+                // var_dump($expiration_date);
+            }
+        }
 
         if(isset($data_base) && strlen($new_entry) > 0){
-            $sql_requets = "INSERT INTO todolist (id, content, state) VALUES (null, '". get_value("new_entry") ."', 0);";
+            $sql_requets = "INSERT INTO todolist (id, content, state, expiration) VALUES (null, '". get_value("new_entry") ."', 0, ". $expiration_date .");";
             $data_base->exec($sql_requets);
         }
     }
 
+    // // Archiver une ou plusieurs tâches...
+    // if(isset($_POST['todo_to_archive'])){
+    //     if(is_array($_POST['todo_to_archive'])){    
+    //         $to_archive = $_POST['todo_to_archive'];
+    //         archive_json($to_archive);
+    //     }
+    // }
+
+    // Supprimer des tâches...
     if(isset($_POST['todo_to_delete'])){
         delete_archives( $_POST['todo_to_delete'] );
     }
@@ -49,8 +62,10 @@ if(isset($_POST)){
         <div class="list create-todo">
             <h2>Ajouter une nouvelle tâche</h2>
             <form action="" method="post">
-                <input type="text" name="new_entry" id="new-entry">
-                <input type="submit" value="Enregistrer">
+                <input type="text" name="new_entry" id="new-entry"/>
+                <input type="submit" value="Enregistrer"/>
+                <label for="input-date">Date limite : </label>
+                <input type="date" name="input_date" id="input-date"/>
             </form>
         </div>
 

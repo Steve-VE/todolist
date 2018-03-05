@@ -29,6 +29,23 @@ function add_to_json( $text, $url="assets/json/datalist.json"){
     }
 }
 
+// Regarde si la date est passé
+function expirate( $date ){
+
+    if($date == null){
+        return false;
+    }
+    else{
+        $date = new DateTime($date);
+        $today = new DateTime();
+
+        if( $date < $today ){
+            return true;
+        }
+    }
+
+    return false;
+}
 
 // Charge et retourne un fichier JSON
 function load_json($url="assets/json/datalist.json"){
@@ -58,11 +75,11 @@ function archive_json($index_to_archive, $url="assets/json/datalist.json"){
 
 
 // Retourne une valeur à aller chercher dans $_POST
-function get_value($value_name){
+function get_value($value_name, $filter=FILTER_SANITIZE_STRING){
     $value_to_return = null;
 
     if(isset($_POST[$value_name])){
-        $value_to_return = filter_var($_POST[$value_name], FILTER_SANITIZE_STRING);
+        $value_to_return = filter_var($_POST[$value_name], $filter);
         // unset($_POST[$value_name]); // On détruit la variable contenu dans POST après l'avoir récupéré pour éviter de la renvoyer en rechargeant la page
     }
 

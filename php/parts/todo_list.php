@@ -11,7 +11,11 @@ require "../functions.php";
         $result = $data_base->query("SELECT * FROM todolist WHERE state = 0");
         
         while($data = $result->fetch()){
-            echo '<div class="item" draggable="true" ondragstart="drag(event)" ';
+            echo '<div class="item';
+            if( expirate( $data['expiration'] ) ){
+                echo ' urgence';
+            }
+            echo '" draggable="true" ondragstart="drag(event)" ';
             echo ' id="id_'. $data['id'] .'" ';
             echo '>';
             echo '<input type="checkbox" name="todo_to_archive[]" value ="';
